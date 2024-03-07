@@ -4,9 +4,9 @@ import {
   PrintifyImageResponse,
   PrintifyProductRequest,
 } from "@/interfaces/PrintifyTypes";
-import OpenAI from "openai";
 import { PRINTIFY_BASE_URL } from "@/app/consts";
 import { log } from "@/functions/log";
+import { generateReplicateImageUrl } from "@/lib/images/replicate";
 
 export const maxDuration = 300;
 
@@ -20,10 +20,11 @@ export default async function ImagePage(params: {
     console.error({ decodedPrompt });
     return <div>Text is required</div>;
   }
-  const url = await generateImageUrl(decodedPrompt); // Use the decoded prompt
+  const url = await generateReplicateImageUrl(decodedPrompt);
+  log("image url", url);
   const image = await postImageToPrintify(url, "generatedImage.png");
   const createProductResponse = await createProduct(
-    constructTeeShirtProductRequest({ imageId: image.id, prompt: decodedPrompt }), // Use the decoded prompt
+    constructTeeShirtProductRequest({ imageId: image.id, prompt: decodedPrompt }),
   );
   await publishPrintifyProduct(createProductResponse.id);
   return (
@@ -105,41 +106,6 @@ async function postImageToPrintify(
     throw new Error("Error posting image to Printify");
   }
 }
-
-const generateImageUrl: (prompt: string) => Promise<string> = async (
-  prompt: string,
-) => {
-  try {
-    const apiKey = process.env.OPENAI_API_KEY;
-    if (!apiKey) {
-      console.error(
-        "API key not found. Please set the OPENAI_API_KEY in your .env file.",
-      );
-      throw new Error("API key not found");
-    }
-
-    const openai = new OpenAI({ apiKey });
-
-    log("Generating image...", { prompt });
-
-    const response = await openai.images.generate({
-      prompt,
-      model: "dall-e-3",
-      n: 1,
-      quality: 'hd',
-      response_format: "url",
-      style: "natural",
-    });
-
-    const url = response.data[0].url!;
-    log("Generated image:", { url });
-
-    return url;
-  } catch (error) {
-    console.error("Error generating image:", error);
-    throw new Error("Error generating image");
-  }
-};
 
 async function createProduct({
   blueprint_id,

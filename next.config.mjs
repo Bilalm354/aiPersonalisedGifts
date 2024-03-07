@@ -13,6 +13,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "images-api.printify.com",
       },
+      {
+        protocol: "https",
+        hostname: "replicate.delivery",
+      },
     ],
   },
 };
