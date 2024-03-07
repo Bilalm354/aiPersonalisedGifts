@@ -8,15 +8,18 @@
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier --write .",
-    "test": "jest"
+    "test": "jest",
+    "db-cli": "sh ./scripts/db-cli.sh",
+    "get-envs": "vercel env pull .env.development.local"
   },
   "dependencies": {
+    "@vercel/postgres": "^0.7.2",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.0",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
-    "stripe": "^14.18.0",
-    "eslint": "^8",
-    "eslint-config-next": "14.1.0"
+    "stripe": "^14.18.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.2",

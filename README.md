@@ -24,3 +24,11 @@
 - Handle emails and texts
 - Handle orders
 - Could use shopify
+
+# Dev Stuff
+
+How to connect to db:
+
+- https://nextjs.org/learn/dashboard-app/setting-up-your-database
+- https://vercel.com/bilal-minhas-s-team/ai-personalised-gifts/stores/postgres/store_7uMyihjo3sZQ7I8k/guides
+- For CLI psql (16.2)
