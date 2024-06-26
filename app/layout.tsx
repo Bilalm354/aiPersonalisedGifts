@@ -41,7 +41,7 @@ export default function RootLayout({
                     <CardFooter className="p-0">
                         <Button
                             asChild
-                            className="focus:shadow-outline w-full rounded rounded-none bg-blue-500 px-4 py-2 text-white hover:bg-blue-700 focus:outline-none"
+                            className="focus:shadow-outline w-full rounded-none px-4 py-2 text-white focus:outline-none"
                         >
                             <Link href="mailto:ai-personalised-gifts@mail.com">
                                 Contact us at ai-personalised-gifts@mail.com

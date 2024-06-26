@@ -9,7 +9,6 @@ import { ImagesCarousel } from "./ImageCarousel";
 import { SizeAndColorSelector } from "./SizeAndColorForm";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { GenerateImageLinks } from "./GenerateImageLinks";
 import { SmallLoadingSpinner } from "./SmallLoadingSpinner";
 
 export interface Options {
@@ -81,7 +80,6 @@ export function ProductDetails({
 
     return (
         <div className="flex w-5/6 flex-col items-center justify-center space-y-4 text-center lg:w-1/3">
-            <GenerateImageLinks prompt={retrievedProduct.title} />
             {images ? (
                 <ImagesCarousel images={filteredImages} />
             ) : (

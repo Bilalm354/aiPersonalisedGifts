@@ -111,7 +111,6 @@ export function TextAreaAndButton() {
                     autoFocus
                 />
                 <Button
-                    className="bg-blue-500 hover:bg-blue-700"
                     onClick={submitGenerateText}
                     data-testid="Generate Image Button"
                 >
@@ -120,7 +119,7 @@ export function TextAreaAndButton() {
 
                 <div className="instructions">
                     <h2 className="mb-2 text-lg font-bold">How It Works:</h2>
-                    <ol className="list-inside list-decimal space-y-2">
+                    <ol className="list-inside list-decimal space-y-2 text-sm md:text-lg">
                         <li>
                             <strong>Enter Your Prompt:</strong> Type your idea
                             or description into the text box.
