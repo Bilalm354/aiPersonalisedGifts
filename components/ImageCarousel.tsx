@@ -26,11 +26,11 @@ export function ImagesCarousel(props: { images: ProductImage[] }) {
                             className={
                                 imageLoaded
                                     ? ""
-                                    : "flex aspect-square animate-pulse rounded-md bg-muted"
+                                    : "flex aspect-square animate-pulse bg-muted"
                             }
                         >
                             <Card>
-                                <CardContent>
+                                <CardContent className="p-0">
                                     <Image
                                         src={image.src}
                                         alt="Product Image"

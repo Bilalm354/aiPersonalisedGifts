@@ -9,7 +9,6 @@ import { ImagesCarousel } from "./ImageCarousel";
 import { SizeAndColorSelector } from "./SizeAndColorForm";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { GenerateImageLinks } from "./GenerateImageLinks";
 import { SmallLoadingSpinner } from "./SmallLoadingSpinner";
 
 export interface Options {
@@ -81,7 +80,6 @@ export function ProductDetails({
 
     return (
         <div className="flex w-5/6 flex-col items-center justify-center space-y-4 text-center lg:w-1/3">
-            <GenerateImageLinks prompt={retrievedProduct.title} />
             {images ? (
                 <ImagesCarousel images={filteredImages} />
             ) : (
@@ -125,7 +123,7 @@ export function ProductDetails({
                                 setCheckoutLoading(false);
                             });
                     }}
-                    className="focus:shadow-outline flex w-2/3 flex-row self-center rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-700 focus:outline-none"
+                    className="focus:shadow-outline flex w-2/3 flex-row self-center rounded px-4 py-2 focus:outline-none"
                 >
                     {checkoutLoading ? (
                         <div className="flex flex-row items-center">

@@ -23,6 +23,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { envClient } from "@/lib/env/client";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Label } from "@/components/ui/label";
 
 const FormSchema = z.object({
     modelProvider: z.string().default("openai"),
@@ -60,67 +62,67 @@ export function TextAreaAndButton() {
 
     return (
         <>
-            <div
-                className="flex w-5/6 flex-col items-center space-y-4 lg:w-1/2"
-                id="form-container"
-            >
-                <label htmlFor="prompt" className="text-lg">
-                    Enter your prompt
-                </label>
-                <Form {...form}>
-                    <form className="w-2/3 space-y-6 text-black">
-                        <FormField
-                            control={form.control}
-                            name="modelProvider"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel></FormLabel>
-                                    <Select
-                                        onValueChange={(e) => {
-                                            setModelProvider(e);
-                                        }}
-                                        defaultValue={field.value}
-                                    >
-                                        <FormControl>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Select model" />
-                                            </SelectTrigger>
-                                        </FormControl>
-                                        <SelectContent>
-                                            <SelectItem value="openai">
-                                                OpenAI/dall-e-3
-                                            </SelectItem>
-                                            <SelectItem value="stable-diffusion">
-                                                Stability-ai/stable-diffusion
-                                            </SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                    </form>
-                </Form>
-                <Textarea
-                    ref={textAreaRef}
-                    placeholder="Enter your prompt here!"
-                    value={prompt}
-                    onChange={onInputChanged}
-                    className="h-48 resize-none rounded-lg bg-slate-600 p-4 text-white placeholder:text-white/50"
-                    onKeyDown={onKeyDown}
-                    autoFocus
-                />
-                <Button
-                    className="bg-blue-500 hover:bg-blue-700"
-                    onClick={submitGenerateText}
-                    data-testid="Generate Image Button"
-                >
-                    Generate Image
-                </Button>
+            <Card>
+                <CardContent>
+                    <Form {...form}>
+                        <form>
+                            <FormField
+                                control={form.control}
+                                name="modelProvider"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel></FormLabel>
+                                        <Select
+                                            onValueChange={(e) => {
+                                                setModelProvider(e);
+                                            }}
+                                            defaultValue={field.value}
+                                        >
+                                            <FormControl>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select model" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                <SelectItem value="openai">
+                                                    OpenAI/dall-e-3
+                                                </SelectItem>
+                                                <SelectItem value="stable-diffusion">
+                                                    Stability-ai/stable-diffusion
+                                                </SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </form>
+                    </Form>
+                    <Label htmlFor="prompt">Enter your prompt</Label>
+                    <Textarea
+                        ref={textAreaRef}
+                        placeholder="Enter your prompt here!"
+                        value={prompt}
+                        onChange={onInputChanged}
+                        className="h-48 w-full resize-none"
+                        onKeyDown={onKeyDown}
+                        autoFocus
+                    />
+                    <Button
+                        onClick={submitGenerateText}
+                        data-testid="Generate Image Button"
+                    >
+                        Generate Image
+                    </Button>
+                </CardContent>
+            </Card>
 
-                <div className="instructions">
-                    <h2 className="mb-2 text-lg font-bold">How It Works:</h2>
-                    <ol className="list-inside list-decimal space-y-2">
+            <Card>
+                <CardHeader>
+                    <CardTitle>How It Works:</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <ol>
                         <li>
                             <strong>Enter Your Prompt:</strong> Type your idea
                             or description into the text box.
@@ -143,8 +145,8 @@ export function TextAreaAndButton() {
                             printed and shipped to you. Enjoy or gift it!
                         </li>
                     </ol>
-                </div>
-            </div>
+                </CardContent>
+            </Card>
         </>
     );
 }

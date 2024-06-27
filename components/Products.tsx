@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { ProductDetails } from "./ProductDetails";
-import { ProductSwitcher } from "./LinksToProducts";
+import { ProductSwitcher } from "./ProductSwitcher";
+import { RetrieveProductResponse } from "@/interfaces/PrintifyTypes";
 
 export const enum ProductType {
     TShirt = "tshirt",
@@ -15,9 +16,9 @@ export const Products = ({
     hoodieProduct,
     mugProduct,
 }: {
-    tShirtProduct: any;
-    hoodieProduct: any;
-    mugProduct: any;
+    tShirtProduct: RetrieveProductResponse;
+    hoodieProduct: RetrieveProductResponse;
+    mugProduct: RetrieveProductResponse;
 }) => {
     const [selectedProductType, setSelectedProductType] = useState<ProductType>(
         ProductType.TShirt,
@@ -60,6 +61,7 @@ export const Products = ({
             <ProductSwitcher
                 selectedProductType={selectedProductType}
                 setSelectedProductType={setSelectedProductType}
+                prompt={tShirtProduct.title}
             />
             <CurrentProductDetails />
         </>

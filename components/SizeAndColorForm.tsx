@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { Options } from "./ProductDetails";
 import {
     Select,
@@ -35,7 +34,7 @@ export const SizeAndColorSelector = ({
     return (
         <div
             id="selectContainer"
-            className="flex w-full flex-col items-center space-y-2 text-black"
+            className="flex w-full flex-col items-center space-y-2"
         >
             <Select
                 onValueChange={(value) => onSizeChange(value)}
